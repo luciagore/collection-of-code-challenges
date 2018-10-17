@@ -1,0 +1,22 @@
+{
+  "name": "collection-of-code-challenges",
+  "version": "1.0.0",
+  "description": "",
+  "main": "reversed-self-power.test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L0wry/collection-of-code-challenges.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/L0wry/collection-of-code-challenges/issues"
+  },
+  "homepage": "https://github.com/L0wry/collection-of-code-challenges#readme",
+  "dependencies": {
+    "jest": "^23.6.0"
+  }
+}
