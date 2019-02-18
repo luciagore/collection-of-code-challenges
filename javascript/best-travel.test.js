@@ -4,21 +4,27 @@
 // The function returns the "best" sum ie the biggest possible sum of k distances less than or equal to the given limit t, 
 // if that sum exists, or otherwise nil, null, None, Nothing, depending on the language. With C++, C, Rust, Swift, Go, Kotlin return -1.
 
+function sumOfAllArrayPermutations(array) {
+
+  const results = [[]];
+
+  for (const item of array) {
+    const copy = [...results]
+    for (const prefix of copy) {
+        results.push(prefix.concat(item))
+    }
+  }
+  return results;
+}
 
 function chooseBestSum(distanceLimit, k, distances){
   if (distances.length < k) return null
-  const results = [[]]
-  for (const value of distances) {
-      const copy = [...results]
-      for (const prefix of copy) {
-          results.push(prefix.concat(value))
-      }
-  }
-  return results
-      .filter(a => a.length && a.length == k )
-      .map(item => item.reduce((a,b) => a + b), 0)
-      .filter(item => item <= distanceLimit)
-      .sort((a,b) => b-a)[0] || null
+
+  return sumOfAllArrayPermutations(distances)
+    .filter(a => a.length && a.length == k )
+    .map(item => item.reduce((a,b) => a + b), 0)
+    .filter(item => item <= distanceLimit)
+    .sort((a,b) => b-a)[0] || null
 }
 
 describe("best travel", () => {
@@ -34,6 +40,10 @@ describe("best travel", () => {
     const limit = 163
     const citiesToVisit = 3
     expect(chooseBestSum(limit, citiesToVisit, ts)).toBe(163)
+  })
+  
+  it("should return all array sum permutations", () => {
+    expect(sumOfAllArrayPermutations([1,2,3])).toEqual([[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]])
   })
 
 })
